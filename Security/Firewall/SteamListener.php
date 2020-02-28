@@ -6,6 +6,7 @@ use Knojector\SteamAuthenticationBundle\Security\Authentication\Token\SteamUserT
 use Knojector\SteamAuthenticationBundle\Security\Authentication\Validator\RequestValidatorInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
+use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authentication\AuthenticationManagerInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
@@ -14,7 +15,7 @@ use Symfony\Component\Security\Http\Firewall\ListenerInterface;
 /**
  * @author Knojector <dev@knojector.xyz>
  */
-class SteamListener implements ListenerInterface
+class SteamListener
 {
     /**
      * @var AuthenticationManagerInterface
@@ -63,7 +64,7 @@ class SteamListener implements ListenerInterface
     /**
      * {@inheritdoc}
      */
-    public function handle(GetResponseEvent $event)
+    public function __invoke(RequestEvent $event)
     {
         $request = $event->getRequest();
 

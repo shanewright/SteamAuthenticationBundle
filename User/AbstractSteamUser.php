@@ -339,9 +339,11 @@ abstract class AbstractSteamUser implements SteamUserInterface, UserInterface
      */
     public function getRoles(): array {
         $roles = [];
-        foreach ($this->roles as $role) {
-            $roles[] = new Role($role);
-        }
+        if (is_array($this->roles)) {
+			foreach ($this->roles as $role) {
+				$roles[] = new Role($role);
+			}
+		}
 
         return $roles;
     }

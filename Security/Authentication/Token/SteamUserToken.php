@@ -46,7 +46,7 @@ class SteamUserToken implements TokenInterface
         return $this->user->getRoles();
     }
 
-    public function getRoleNames()
+    public function getRoleNames() : array
     {
         return array_map(function ($role) {
             return (string)$role;
@@ -170,9 +170,14 @@ class SteamUserToken implements TokenInterface
     /**
      * {@inheritDoc}
      */
-    public function __serialize()
+    public function __serialize() : array
     {
-        return $this->serialize();
+        return [
+			'attributes' => $this->attributes,
+			'authenticated' => $this->authenticated,
+			'user' => $this->user,
+			'username' => $this->username,
+		];
     }
 
     /**
@@ -187,7 +192,7 @@ class SteamUserToken implements TokenInterface
     /**
      * {@inheritDoc}
      */
-    public function __unserialize($serialized)
+    public function __unserialize($serialized) : void
     {
         $this->unserializeFromArray($serialized);
     }
