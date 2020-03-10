@@ -41,7 +41,7 @@ class UserFactory
         $user->setCommunityVisibilityState($userData['communityvisibilitystate']);
         $user->setProfileState($userData['profilestate']);
         $user->setProfileName($userData['personaname']);
-        $user->setLastLogOff($userData['lastlogoff']);
+        //$user->setLastLogOff($userData['lastlogoff']);
         $user->setCommentPermission(
             isset($userData['commentpermission']) ? $userData['commentpermission'] : 0
         );
